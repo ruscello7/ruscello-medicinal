@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruscello Medicinal</title>
+</head>
+<body>
+
+    <header>
+        <h1>Ruscello Medicinal</h1>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button> 
+        <nav>
+            <ul>
+                <li><a href="index.html" data-link>Início</a></li>
+                <li class="tem-dropdown">
+                    <a href="projetos.html" data-link>Projetos</a>
+                    <ul class="dropdown">
+                        <li><a href="projetos.html#voluntariado" data-link>Voluntariado</a></li>
+                        <li><a href="projetos.html#doacoes" data-link>Doações</a></li>
+                    </ul>
+                </li>
+                <li><a href="cadastro.html" data-link>Cadastro</a></li>
+                <li><a href="index.html#contato" data-link>Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app">
+        <section>
+            <h2>Sobre nós</h2>
+            <div class="alerta alerta-info">
+                Novos voluntários são sempre bem-vindos! Confira a página de Projetos para saber como ajudar.
+            </div>
+            <p>A Ruscello Medicinal é uma organização dedicada a promover saúde e bem-estar por meio de projetos sociais, levando cuidado e informação a quem mais precisa.</p>
+            <img src="../img/logo.png" alt="Logotipo da Ruscello Medicinal">
+        </section>
+
+        <section id="contato">
+            <h2>Contato</h2>
+            <p>Email: contato@ruscellomedicinal.com</p>
+            <p>Telefone: (11) 91234-5673</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ruscello Medicinal. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/locale/pt-br.js"></script>
+    <script type="module" src="../js/app.js"></script>
+</body>
+</html>

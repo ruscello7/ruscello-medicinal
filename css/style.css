@@ -1,0 +1,613 @@
+/* ============================
+   1. DESIGN SYSTEM — Variáveis
+   ============================ */
+:root {
+  --cor-primaria: #2E7D5B;
+  --cor-primaria-clara: #4CAF7D;
+  --cor-secundaria: #1B4F72;
+  --cor-secundaria-clara: #2E86C1;
+  --cor-destaque: #E67E22;
+  --cor-neutra-escura: #2C3E50;
+  --cor-neutra-media: #7F8C8D;
+  --cor-neutra-clara: #F4F6F7;
+  --cor-branco: #FFFFFF;
+
+  --fs-xs: 0.875rem;
+  --fs-sm: 1rem;
+  --fs-md: 1.25rem;
+  --fs-lg: 2rem;
+  --fs-xl: 3rem;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+
+  --largura-maxima: 1200px;
+  --radius: 8px;
+}
+
+/* ============================
+   2. RESET BÁSICO
+   ============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: var(--fs-sm);
+  color: var(--cor-neutra-escura);
+  background-color: var(--cor-neutra-clara);
+  line-height: 1.6;
+}
+
+/* ============================
+   3. HEADER + NAV (Flexbox + Dropdown + Hambúrguer)
+   ============================ */
+header {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  position: relative;
+}
+
+header h1 {
+  font-size: var(--fs-lg);
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+header nav a {
+  color: var(--cor-branco);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--cor-destaque);
+  transition: width 0.3s ease;
+}
+
+header nav a:hover {
+  color: var(--cor-primaria-clara);
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+.tem-dropdown {
+  position: relative;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--cor-branco);
+  min-width: 180px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: var(--space-1) 0;
+  flex-direction: column;
+  gap: 0;
+  z-index: 10;
+}
+
+.tem-dropdown:hover .dropdown {
+  display: flex;
+}
+
+.dropdown li {
+  width: 100%;
+}
+
+.dropdown a {
+  color: var(--cor-neutra-escura);
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  font-weight: 500;
+}
+
+.dropdown a:hover {
+  background-color: var(--cor-neutra-clara);
+  color: var(--cor-primaria);
+}
+
+.dropdown a::after {
+  display: none;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--cor-branco);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle.ativo span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+.menu-toggle.ativo span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.ativo span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* ============================
+   4. LAYOUT MACRO — Grid 12 colunas
+   ============================ */
+main {
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+
+main section {
+  grid-column: 1 / -1;
+  background-color: var(--cor-branco);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+
+section h2 {
+  font-size: var(--fs-lg);
+  color: var(--cor-primaria);
+  margin-bottom: var(--space-3);
+}
+
+section img {
+  max-width: 200px;
+  border-radius: 50%;
+  display: block;
+  margin: var(--space-3) auto;
+}
+
+/* ============================
+   5. FORMULÁRIO (Flexbox interno)
+   ============================ */
+form fieldset {
+  border: 1px solid var(--cor-neutra-media);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+form legend {
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  padding: 0 var(--space-1);
+}
+
+form .campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+form label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+form input {
+  width: 100%;
+  padding: var(--space-2);
+  border: 1px solid var(--cor-neutra-media);
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  transition: border-color 0.3s ease;
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--cor-secundaria-clara);
+}
+
+button[type="submit"] {
+  margin-top: var(--space-3);
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #cf6d1a;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.97);
+  background-color: #b85e15;
+}
+
+button[type="submit"]:disabled {
+  background-color: var(--cor-neutra-media);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ---- Estados de validação (controlados pelo JS) ---- */
+form input.valido,
+form select.valido,
+form textarea.valido {
+  border: 2px solid #2e7d32;
+}
+
+form input.invalido,
+form select.invalido,
+form textarea.invalido {
+  border: 2px solid #c62828;
+}
+
+.msg-campo {
+  display: block;
+  margin-top: 4px;
+  min-height: 1em;
+  font-size: 0.85rem;
+  color: #c62828;
+}
+
+.alerta-form {
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.alerta-form.sucesso {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.alerta-form.erro {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* ============================
+   6. CARDS (Projetos)
+   ============================ */
+.cards-container {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.card {
+  flex: 1 1 280px;
+  background-color: var(--cor-branco);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card h3 {
+  color: var(--cor-primaria);
+  font-size: var(--fs-md);
+}
+
+.card p {
+  color: var(--cor-neutra-media);
+  flex-grow: 1;
+}
+
+.grid-projetos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card-projeto {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-categoria {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* ============================
+   7. MODAL
+   ============================ */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.modal-aberto {
+  display: flex;
+}
+
+.modal-conteudo {
+  background-color: var(--cor-branco);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  text-align: center;
+}
+
+.modal-conteudo h3 {
+  color: var(--cor-primaria);
+  margin-bottom: var(--space-2);
+}
+
+.modal-fechar {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  background: none;
+  border: none;
+  font-size: var(--fs-lg);
+  cursor: pointer;
+  color: var(--cor-neutra-media);
+  line-height: 1;
+}
+
+/* ============================
+   7.5 BADGES E ALERTAS
+   ============================ */
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-saude {
+  background-color: var(--cor-primaria-clara);
+  color: var(--cor-branco);
+}
+
+.badge-urgente {
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+}
+
+.alerta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-sm);
+}
+
+.alerta-sucesso {
+  background-color: #e6f4ea;
+  border-left: 4px solid var(--cor-primaria);
+  color: #1e5631;
+}
+
+.alerta-info {
+  background-color: #e8f1f8;
+  border-left: 4px solid var(--cor-secundaria-clara);
+  color: var(--cor-secundaria);
+}
+
+/* ============================
+   8. FOOTER
+   ============================ */
+footer {
+  background-color: var(--cor-neutra-escura);
+  color: var(--cor-branco);
+  text-align: center;
+  padding: var(--space-3);
+  font-size: var(--fs-xs);
+}
+
+/* ============================
+   9. RESPONSIVIDADE — 5 breakpoints
+   ============================ */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: var(--fs-md);
+  }
+  :root {
+    --fs-xl: 2rem;
+    --fs-lg: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  header nav {
+    display: none;
+    width: 100%;
+    order: 3;
+  }
+
+  header nav.aberto {
+    display: block;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  header nav ul li {
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  header nav a {
+    display: block;
+    padding: var(--space-2) 0;
+  }
+
+  .dropdown {
+    display: flex;
+    position: static;
+    box-shadow: none;
+    background-color: rgba(255,255,255,0.05);
+    padding-left: var(--space-2);
+  }
+
+  .dropdown a {
+    color: var(--cor-branco);
+  }
+
+  .dropdown a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--cor-branco);
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    padding: var(--space-2);
+  }
+
+  main section {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #voluntariado {
+    grid-column: 1 / 7;
+  }
+  #doacoes {
+    grid-column: 7 / 13;
+  }
+  main {
+    padding: var(--space-3);
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding: var(--space-4);
+  }
+  section img {
+    max-width: 220px;
+  }
+  #voluntariado {
+    grid-column: 1 / 7;
+  }
+  #doacoes {
+    grid-column: 7 / 13;
+  }
+}
+
+@media (min-width: 1440px) {
+  main {
+    max-width: 1400px;
+  }
+  :root {
+    --fs-xl: 3.5rem;
+  }
+
+  /* ============================
+   10. LISTA DE VOLUNTÁRIOS (localStorage)
+   ============================ */
+.lista-voluntarios {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.lista-voluntarios li {
+  background-color: var(--cor-neutra-clara);
+  border-left: 4px solid var(--cor-primaria);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+}
+
+.btn-limpar {
+  background-color: var(--cor-neutra-media);
+  color: var(--cor-branco);
+  border: none;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-limpar:hover {
+  background-color: var(--cor-neutra-escura);
+}
+}
