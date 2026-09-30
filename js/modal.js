@@ -5,6 +5,7 @@ export function abrirModal(id) {
   modal.style.display = 'flex';
   modal.style.opacity = '1';
   modal.style.visibility = 'visible';
+  modal.querySelector('.modal-fechar')?.focus();
 }
 
 export function fecharModal(id) {
